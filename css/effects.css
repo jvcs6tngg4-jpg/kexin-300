@@ -1,0 +1,57 @@
+/* ============================================================
+   揭示动画 / 特殊效果
+   ============================================================ */
+
+[data-reveal]{opacity:0;transform:translateY(36px);transition:opacity 1.25s var(--ease-lux),transform 1.25s var(--ease-lux);will-change:opacity,transform}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="fade"]{transform:none}
+[data-reveal="left"]{transform:translateX(-44px)}
+[data-reveal="right"]{transform:translateX(44px)}
+[data-reveal="scale"]{transform:scale(.9)}
+[data-reveal="scale"].in,[data-reveal="left"].in,[data-reveal="right"].in{transform:none}
+
+/* 开幕词 */
+.screen-opening .opening-poem [data-reveal]{transition:opacity 1.6s var(--ease-lux),transform 1.6s var(--ease-lux),letter-spacing 1.6s var(--ease-lux)}
+.screen-opening .opening-poem [data-reveal].in{letter-spacing:.18em}
+
+/* 首页名字 */
+.screen-home .home-name [data-reveal]{opacity:0;transform:translateY(50px);transition:opacity 1.4s var(--ease-lux),transform 1.4s var(--ease-lux)}
+.screen-home .home-name [data-reveal].in{opacity:1;transform:none}
+
+/* 印章 */
+.seal[data-reveal]{opacity:0;transform:translateY(-30px) rotate(-12deg) scale(.7);transition:opacity .9s var(--ease-lux),transform .9s var(--ease-lux)}
+.seal[data-reveal].in{opacity:1;transform:translateY(0) rotate(-8deg) scale(1)}
+
+/* 像素画布 */
+.pixel-cabinet[data-reveal]{opacity:0;transform:translateY(40px) scale(.94);transition:opacity 1.1s var(--ease-lux),transform 1.1s var(--ease-lux)}
+.pixel-cabinet[data-reveal].in{opacity:1;transform:none}
+
+/* 日记线（壹） */
+.diary-line[data-reveal]{transition:opacity 1.2s var(--ease-lux),transform 1.2s var(--ease-lux)}
+.diary-line:nth-child(odd)[data-reveal]{transform:translateX(-50px)}
+.diary-line:nth-child(even)[data-reveal]{transform:translateX(50px)}
+.diary-line[data-reveal].in{transform:none}
+
+/* 便签（伍） */
+.note[data-reveal]{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.note[data-reveal="scale"]{transform:scale(.85) rotate(var(--rot,0deg))}
+.note[data-reveal="scale"].in{transform:rotate(var(--rot,0deg))}
+
+/* 暗号词 */
+.codeword{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease),transform .8s var(--ease),border-color .5s,color .5s,box-shadow .5s}
+[data-reveal].in .codeword{opacity:1;transform:none}
+[data-reveal].in .codeword:nth-child(1){transition-delay:.05s}
+[data-reveal].in .codeword:nth-child(2){transition-delay:.1s}
+[data-reveal].in .codeword:nth-child(3){transition-delay:.15s}
+[data-reveal].in .codeword:nth-child(4){transition-delay:.2s}
+[data-reveal].in .codeword:nth-child(5){transition-delay:.25s}
+[data-reveal].in .codeword:nth-child(6){transition-delay:.3s}
+[data-reveal].in .codeword:nth-child(7){transition-delay:.35s}
+[data-reveal].in .codeword:nth-child(8){transition-delay:.4s}
+[data-reveal].in .codeword:nth-child(9){transition-delay:.45s}
+
+/* 低动效偏好 */
+@media (prefers-reduced-motion:reduce){
+  [data-reveal]{opacity:1 !important;transform:none !important;transition:none !important}
+  .preloader *{animation:none !important;opacity:1 !important}
+}

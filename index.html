@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>煊 · 芯 · 我们的 300 多天</title>
+<meta name="description" content="这是只属于芯的一部电影 —— 煊">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/screens.css">
+<link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+
+<!-- ============ 加载页 ============ -->
+<div id="preloader" class="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-line"><span id="preloaderFill"></span></div>
+    <p class="preloader-en" id="preloaderEn">Witness · 见证</p>
+    <h1 class="preloader-title"><span class="pre-ch">煊</span><span class="pre-ch">·</span><span class="pre-ch">芯</span></h1>
+    <p class="preloader-sub">谢谢你来 · 见证我们的 300 多天</p>
+  </div>
+</div>
+
+<!-- ============ 全局氛围层 ============ -->
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="dust" aria-hidden="true"></canvas>
+<canvas id="petals" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div id="curtain" class="curtain" aria-hidden="true"><span class="curtain-gold"></span></div>
+<div id="cursor" class="cursor" aria-hidden="true"><span></span></div>
+
+<!-- ============ 音乐 & 导览 ============ -->
+<button id="musicBtn" class="fab fab-music" aria-label="音乐">
+  <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+</button>
+<button id="menuBtn" class="fab fab-menu" aria-label="章节">
+  <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+<nav id="menu" class="menu" aria-label="章节">
+  <div class="menu-inner">
+    <p class="menu-en">CHAPTERS · 章节</p>
+    <div class="menu-rule"></div>
+    <a href="#/timeline" data-nav="timeline"><i>壹</i><span>初遇</span></a>
+    <a href="#/distance" data-nav="distance"><i>贰</i><span>一千公里的月光</span></a>
+    <a href="#/meeting" data-nav="meeting"><i>叁</i><span>漂洋过海来见你</span></a>
+    <a href="#/game" data-nav="game"><i>肆</i><span>我们的峡谷</span></a>
+    <a href="#/quotes" data-nav="quotes"><i>伍</i><span>她说过的那些话</span></a>
+    <a href="#/about" data-nav="about"><i>陆</i><span>关于你</span></a>
+    <a href="#/food" data-nav="food"><i>柒</i><span>好好吃饭</span></a>
+    <a href="#/cinema" data-nav="cinema"><i>捌</i><span>流动的影像</span></a>
+    <a href="#/finale" data-nav="finale"><i>终</i><span>未完待续</span></a>
+    <div class="menu-foot">煊 · 芯 · 谢谢见证</div>
+  </div>
+</nav>
+
+<!-- ============ 第 0 幕 · 旧时光机 ============ -->
+<section class="screen screen-pixel" id="screen-pixel" data-name="pixel">
+  <div class="pixel-wrap">
+    <p class="hall-eyebrow" data-reveal>SCENE 0 · 旧时光机</p>
+    <div class="pixel-cabinet" data-reveal data-delay="1">
+      <canvas id="pixelCanvas" width="320" height="240"></canvas>
+      <div class="pixel-cabinet-base"><span></span><span></span><span></span></div>
+    </div>
+    <p class="pixel-hint" data-reveal data-delay="2">在见证开始之前 · 有一个小小的问题</p>
+    <h2 class="pixel-question" data-reveal data-delay="3">你，愿意见证我们的 300 多天吗？</h2>
+    <div class="pixel-btns" data-reveal data-delay="4">
+      <button id="btnYes" class="pixel-btn pixel-yes">愿 意</button>
+      <button id="btnNo" class="pixel-btn pixel-no">不 愿 意</button>
+    </div>
+    <p id="pixelMsg" class="pixel-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ 第 1 幕 · 片头 ============ -->
+<section class="screen screen-home" id="screen-home" data-name="home">
+  <div class="home-inner">
+    <div class="home-orb" aria-hidden="true"></div>
+    <p class="home-eyebrow overline-en" data-reveal>A Story to Witness · 见证</p>
+    <h1 class="home-name gold-text" data-reveal data-delay="1"><span>煊</span><span>·</span><span>芯</span></h1>
+    <div class="home-rule" data-reveal data-delay="2"><span></span></div>
+    <p class="home-sub" data-reveal data-delay="3">女 主 角 · 芯</p>
+    <p class="home-desc" data-reveal data-delay="4">男 主 角 · 煊</p>
+    <button id="btnEnter" class="doorbell" data-reveal data-delay="5">
+      <span class="doorbell-ring"></span>
+      <span class="doorbell-core">见 证</span>
+    </button>
+    <p class="home-curator" data-reveal data-delay="6">2025.10.05 · 故事开始</p>
+  </div>
+</section>
+
+<!-- ============ 第 2 幕 · 密钥 ============ -->
+<section class="screen screen-gate" id="screen-gate" data-name="gate">
+  <div class="gate-inner">
+    <p class="hall-eyebrow" data-reveal>VERIFY · 验证一下</p>
+    <div class="gate-lock" data-reveal data-delay="1" aria-hidden="true">
+      <span class="lock-ring r1"></span><span class="lock-ring r2"></span><span class="lock-ring r3"></span>
+      <span class="lock-key">✦</span>
+    </div>
+    <h2 class="gate-title" data-reveal data-delay="2">我女朋友的生日是 2 月 25 日</h2>
+    <p class="gate-sub" data-reveal data-delay="3">把日期输进去，就能见证我们的故事</p>
+    <form id="gateForm" class="gate-form" autocomplete="off" data-reveal data-delay="4">
+      <div class="gate-inputwrap">
+        <input id="gateInput" type="text" inputmode="text" placeholder="2 月 25 日" maxlength="24" autocomplete="off">
+        <span class="gate-underline"></span>
+      </div>
+      <button type="submit" class="gate-go">开 启 ✦</button>
+    </form>
+    <p id="gateMsg" class="gate-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ 第 3 幕 · 开场白 · 花瓣雨 ============ -->
+<section class="screen screen-opening" id="screen-opening" data-name="opening">
+  <div class="opening-inner">
+    <div class="opening-vertical" aria-hidden="true"><b>致 芯</b> · 见 证</div>
+    <p class="hall-eyebrow" data-reveal>SCENE 3 · 开场白</p>
+    <div class="opening-days" data-reveal data-delay="1">今天，是我们在一起的第 <b id="dayCountOpening">311</b> 天</div>
+
+    <!-- 选歌环节：薛之谦 / 方大同 -->
+    <div class="song-pick" id="songPick" data-reveal data-delay="2">
+      <p class="song-pick-title">让谁唱歌给你听呢？ <span class="song-heart">♡</span></p>
+      <div class="song-pick-btns">
+        <button class="song-btn" data-song="xue" aria-label="薛之谦 · 苏黎世的从前">
+          <span class="song-frame"><img src="assets/photos/singer_xue.jpg" alt="薛之谦"></span>
+          <span class="song-name">薛之谦<br><em>《苏黎世的从前》</em></span>
+          <span class="song-shout">快选我，快选我！</span>
+        </button>
+        <button class="song-btn" data-song="fang" aria-label="方大同 · 好不容易">
+          <span class="song-frame"><img src="assets/photos/singer_fang.jpg" alt="方大同"></span>
+          <span class="song-name">方大同<br><em>《好不容易》</em></span>
+          <span class="song-shout">快选我，快选我！</span>
+        </button>
+      </div>
+      <p class="song-chosen-note" aria-live="polite"></p>
+    </div>
+
+    <h2 class="opening-title gold-text" data-reveal data-delay="3">致 芯</h2>
+    <div class="opening-rule" data-reveal data-delay="3"><span></span></div>
+    <div class="opening-poem">
+      <p data-reveal data-delay="4">这里的一切，都只为你。</p>
+      <p data-reveal data-delay="6">我把我们之间细碎的月光，一页一页收好，放在这里。</p>
+      <p data-reveal data-delay="8">我曾想，究竟怎样的浪漫，才配得上你。</p>
+      <p data-reveal data-delay="10">后来才明白——浪漫不是我准备的，是你本身。</p>
+      <p class="poem-quote" data-reveal data-delay="12">「你出现过，我感受过，从此一生都算我月圆。」</p>
+    </div>
+    <div class="seal" id="sealStamp" data-reveal data-delay="14" aria-hidden="true"><span>煊 · 芯</span></div>
+    <p class="opening-sig" data-reveal data-delay="15">—— 煊</p>
+    <button id="btnToStory" class="btn-luxe" data-reveal data-delay="16">见证我们的故事 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 壹 · 初遇（旧日记） ============ -->
+<section class="screen screen-hall screen-timeline" id="screen-timeline" data-name="timeline">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER I · 初遇</p>
+    <h2 class="hall-title">初 遇</h2>
+    <p class="hall-sub">一局游戏，让两个城市的名字，有了交集</p>
+  </div>
+
+  <div class="diary">
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 08 · 10</span>
+      <h3 class="diary-title">峡谷初遇</h3>
+      <p class="diary-text">一局平平无奇的王者匹配。你在局内一直互动，让我觉得——这个女孩，好有趣。于是，我按下了「添加好友」。</p>
+      <blockquote class="diary-quote">「我特别喜欢听你说话，我记得当时我会很期待你接下来会说些什么。」<cite>—— 后来你告诉我</cite></blockquote>
+      <div class="diary-media"><div class="media-slot photo" data-slot="meet" data-ratio="16:9"><span class="slot-label">我们的峡谷 · 第一局</span></div></div>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 08 · 12</span>
+      <h3 class="diary-title">微信</h3>
+      <p class="diary-text">我主动要了你的微信。之后的几天，我上线时，你总在线。我们好像，都在等对方。</p>
+      <div class="diary-media"><div class="media-slot photo" data-slot="dali1" data-ratio="4:3"><span class="slot-label">那几天 · 你分享的照片</span></div></div>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 08 · 12 — 08 · 25</span>
+      <h3 class="diary-title">大理的夏天</h3>
+      <p class="diary-text">你在大理，我在家。你分享大理的云和风，我回应。每天，都多了解你一点点——然后我知道了你的名字，<em>芯</em>。</p>
+      <div class="diary-media"><div class="media-slot photo" data-slot="dali2" data-ratio="4:3"><span class="slot-label">大理 · 你眼里的风景</span></div></div>
+    </div>
+
+    <div class="diary-line diary-line-letter" data-reveal>
+      <span class="diary-date">2025 · 09 · 20</span>
+      <h3 class="diary-title">任务</h3>
+      <p class="diary-text">你说：「我需要你过年前可以一直在。」</p>
+      <p class="diary-text">我说：「我不接收这个任务。因为我要给你一个新任务——<em>我需要你可以一直在。</em>」</p>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 09 · 30</span>
+      <h3 class="diary-title">少女心事</h3>
+      <p class="diary-text">你把心里最沉的石头，一块一块搬过来给我看。那晚我决定：这个女孩，我要好好守护。</p>
+      <blockquote class="diary-quote">「那是我努力过的痕迹。我很棒，很勇敢地去维护我想要的关系。」<cite>—— 你哭着说</cite></blockquote>
+      <div class="diary-media"><div class="media-slot photo" data-slot="oct1a" data-ratio="4:3"><span class="slot-label">九月的尾声</span></div></div>
+    </div>
+
+    <div class="diary-line diary-hero" data-reveal>
+      <span class="diary-date">2025 · 10 · 05</span>
+      <h3 class="diary-title">我们，在一起了</h3>
+      <p class="diary-text">「现在，就在这里，我们在一起。不是以朋友的身份，而是以<em>我们</em>的身份。」</p>
+      <blockquote class="diary-quote diary-quote-hero">「我永远都愿意。」<cite>—— 你</cite></blockquote>
+      <div class="diary-media diary-media-hero">
+        <div class="media-slot exhibit-chat" data-slot="together" id="exhibitChat" role="button" tabindex="0" aria-label="那晚的聊天记录，轻触放大"><span class="slot-label">那晚的聊天记录 · 已打码 · 轻触放大 ✦</span></div>
+        <div class="diary-duo">
+          <div class="media-slot photo" data-slot="oct5a" data-ratio="4:3"><span class="slot-label">10 · 05 夜</span></div>
+          <div class="media-slot photo" data-slot="oct5b" data-ratio="4:3"><span class="slot-label">那一天</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diary-line diary-line-letter" data-reveal>
+      <span class="diary-date">2025 · 10 · 07</span>
+      <h3 class="diary-title">第一个小矛盾</h3>
+      <p class="diary-text">你介意的是我瞒着你。后来我们都懂了：<em>在意，才会小气；而你愿意说出来，是相信我。</em></p>
+    </div>
+
+    <div class="diary-line diary-line-letter" data-reveal>
+      <span class="diary-date">2025 · 10 · 22</span>
+      <h3 class="diary-title">一些不重要的重要</h3>
+      <p class="diary-text">你发来一个文档，第一句是：「对不起，应该有很多想说的，话到嘴边却只剩一句——<em>我太想和你有以后了。</em>」</p>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 11</span>
+      <h3 class="diary-title">我们的画廊</h3>
+      <p class="diary-text">十一月，我们合办了一场「展览」——未来的草图、二十一问的回响、十二笔的未来。原来爱，是可以被认真布展的。</p>
+      <div class="diary-media"><div class="media-slot photo" data-slot="q21" data-ratio="16:9"><span class="slot-label">你问我答 · 主考官与考生</span></div></div>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2025 · 11 · 29</span>
+      <h3 class="diary-title">舞蹈与退让</h3>
+      <p class="diary-text">你讲起那段差点去上海舞蹈学院的日子。你说你总是「半途而废」。可我知道——那不是一个逃兵，那是一个过早走上战场、用牺牲自己来保护所有人的<em>少年将军</em>。</p>
+    </div>
+
+    <div class="diary-line diary-line-letter" data-reveal>
+      <span class="diary-date">2025 · 12 · 12</span>
+      <h3 class="diary-title">和好</h3>
+      <p class="diary-text">「过来，让我抱抱这个胡思乱想了很久的小朋友吧。」那晚之后，我们约定：任何不安，都要第一时间一起解开。</p>
+    </div>
+
+    <div class="diary-line" data-reveal>
+      <span class="diary-date">2026 · 01</span>
+      <h3 class="diary-title">和煊</h3>
+      <p class="diary-text">你的相册里，悄悄多了一个文件夹，名字叫「和煊」。里面的照片，从 20 张，慢慢变成 125 张。</p>
+      <div class="diary-duo">
+        <div class="media-slot photo" data-slot="album1" data-ratio="4:3"><span class="slot-label">和煊 · 20 张</span></div>
+        <div class="media-slot photo" data-slot="album2" data-ratio="4:3"><span class="slot-label">和煊 · 125 张</span></div>
+      </div>
+    </div>
+
+    <div class="diary-line diary-hero" data-reveal>
+      <span class="diary-date">2026 · 06 · 13</span>
+      <h3 class="diary-title">漂洋过海</h3>
+      <p class="diary-text">1417 公里，你把它叠成一张登机牌，飞过来见我。<span class="tl-echo">—— 那是我们第一次见面。</span></p>
+      <div class="diary-media"><div class="media-slot photo" data-slot="meet_day" data-ratio="4:3"><span class="slot-label">2026.06.13 · 贵州</span></div></div>
+      <p class="diary-link">→ 前往 <a href="#/meeting" data-nav="meeting">第三章 · 漂洋过海来见你</a></p>
+    </div>
+
+    <div class="diary-line diary-line-letter" data-reveal>
+      <span class="diary-date">2026 · 08 · 今天</span>
+      <h3 class="diary-title">未完待续</h3>
+      <p class="diary-text">故事还在继续写。下一章，是我们一起落笔的。</p>
+    </div>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="distance" data-magnetic>第二章 · 一千公里的月光 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 贰 · 一千公里的月光（深空） ============ -->
+<section class="screen screen-hall screen-distance" id="screen-distance" data-name="distance">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER II · 一千公里的月光</p>
+    <h2 class="hall-title">一千公里的月光</h2>
+    <p class="hall-sub">你在江苏，我在贵州。隔着 1417 公里，和一片共用的月亮</p>
+  </div>
+
+  <div class="cosmos">
+    <div class="moon-map" id="moonMap" data-reveal>
+      <div class="map-stars" aria-hidden="true"></div>
+      <svg class="map-svg" viewBox="0 0 760 400" role="img" aria-label="贵州到江苏的月光航线">
+        <defs>
+          <path id="arc" d="M 130 300 C 300 110, 520 110, 640 150" fill="none"/>
+        </defs>
+        <circle cx="130" cy="300" r="8" class="map-city map-city-a"/>
+        <circle cx="640" cy="150" r="8" class="map-city map-city-b"/>
+        <text x="130" y="336" class="map-city-name">贵州 · 贵阳</text>
+        <text x="640" y="126" class="map-city-name" text-anchor="end">江苏 · 无锡</text>
+        <use href="#arc" class="map-path"/>
+        <use href="#arc" class="map-path-dash"/>
+        <g id="mapPlane" class="map-plane">
+          <path d="M-16 0 L16 0 M0 -9 L0 9 M0 0 L22 -14 L22 9 Z"/>
+        </g>
+        <text x="380" y="52" class="map-km">1417 km</text>
+        <text x="380" y="78" class="map-km-sub">相距 1417 公里 · 一起听了 10278 分钟</text>
+      </svg>
+      <p class="map-caption">异地恋最浪漫的地方，大概是——我们各自抬头，看到的却是同一轮月亮。<br><em class="map-tap">轻触航线 · 寄出一架纸飞机 ✈</em></p>
+    </div>
+
+    <div class="ritual-block">
+      <h3 class="chapter-subtitle" data-reveal>异地的日子里，我们是这样爱着的</h3>
+      <div class="ritual-grid">
+        <figure class="ritual-card" data-reveal data-delay="1">
+          <div class="ritual-frame"><div class="media-slot photo" data-slot="miss" data-ratio="9:16"><span class="slot-label">想你的时候</span></div></div>
+          <figcaption>「九点五十三了，哥哥……我现在真的特别想你。」<span class="fig-date">2026.04.25</span></figcaption>
+        </figure>
+        <figure class="ritual-card" data-reveal data-delay="2">
+          <div class="ritual-frame"><div class="media-slot photo" data-slot="five" data-ratio="9:16"><span class="slot-label">日常的可爱</span></div></div>
+          <figcaption>「哼哼！我要报警」—— 5 块钱，也要转账给你。<span class="fig-date">2026.02.20</span></figcaption>
+        </figure>
+        <figure class="ritual-card" data-reveal data-delay="3">
+          <div class="ritual-frame"><div class="media-slot photo" data-slot="call" data-ratio="9:16"><span class="slot-label">电话</span></div></div>
+          <figcaption>那通 07:07:55 的电话，我们谁都不舍得先挂。<span class="fig-date">2026.06.22</span></figcaption>
+        </figure>
+        <figure class="ritual-card" data-reveal data-delay="4">
+          <div class="ritual-frame"><div class="media-slot photo" data-slot="hug" data-ratio="9:16"><span class="slot-label">抱抱</span></div></div>
+          <figcaption>「抱抱煊呀，见面之后，也记得随时向我索要。」<span class="fig-date">2026.01.25</span></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="codewords">
+      <h3 class="chapter-subtitle" data-reveal>只有我们懂的暗号</h3>
+      <div class="codeword-wall" data-reveal>
+        <span class="codeword">鬼火摩托</span>
+        <span class="codeword">本黄</span>
+        <span class="codeword">六个核桃</span>
+        <span class="codeword">拉勾 · 谁骗人谁是小狗</span>
+        <span class="codeword">状元</span>
+        <span class="codeword">窄门之宽 · 容下芸芸众生</span>
+        <span class="codeword">你要开心</span>
+        <span class="codeword">存泪罐</span>
+        <span class="codeword">今晚 11:30</span>
+      </div>
+      <p class="codeword-note" data-reveal>每一个词背后，都藏着一小段只有我们知道的故事。</p>
+    </div>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="meeting" data-magnetic>第三章 · 漂洋过海来见你 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 叁 · 漂洋过海来见你（暖金胶片） ============ -->
+<section class="screen screen-hall screen-meeting" id="screen-meeting" data-name="meeting">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER III · 漂洋过海来见你</p>
+    <h2 class="hall-title">漂洋过海来见你</h2>
+    <p class="hall-sub">2026.06.13 — 你，飞来了贵州</p>
+  </div>
+
+  <div class="meeting-story" data-reveal>
+    <p>等风来，不如去见你。</p>
+    <p>你说你想我，我就把一千四百公里的想念，叠进一张登机牌里。</p>
+    <p class="em-rose">芯，无锡 → 贵阳 · 2026.06.13</p>
+    <p>两天后，贵阳 → 无锡。我们的第一次见面，只有 29 个小时。</p>
+  </div>
+
+  <div class="tickets" data-reveal>
+    <div class="ticket">
+      <div class="ticket-media"><div class="media-slot photo" data-slot="board1" data-ratio="4:3"><span class="slot-label">去程 · 无锡 → 贵阳</span></div></div>
+      <p class="ticket-cap">AQ1332 · 6月13日 · 无锡 → 贵阳（已打码）</p>
+    </div>
+    <div class="ticket">
+      <div class="ticket-media"><div class="media-slot photo" data-slot="board2" data-ratio="4:3"><span class="slot-label">返程 · 贵阳 → 无锡</span></div></div>
+      <p class="ticket-cap">ZH8528 · 6月14日 · 贵阳 → 无锡（已打码）</p>
+    </div>
+    <div class="ticket">
+      <div class="ticket-media"><div class="media-slot photo" data-slot="km" data-ratio="4:3"><span class="slot-label">1417 公里</span></div></div>
+      <p class="ticket-cap">相距1417公里 · 一起听了10278分钟</p>
+    </div>
+    <div class="ticket">
+      <div class="ticket-media"><div class="media-slot photo" data-slot="music1" data-ratio="4:3"><span class="slot-label">我们的歌单</span></div></div>
+      <p class="ticket-cap">偿还 · 王菲 —— TA就在你身边</p>
+    </div>
+  </div>
+
+  <div class="meeting-letter" data-reveal>
+    <p>那两天，我在机场等到你，像等到一个迟到了很久的春天。</p>
+    <p>原来隔着屏幕说了一年的「想你」，变成眼前的你时，会让人紧张到说不出话。</p>
+    <p class="em-gold">芯，谢谢你不怕远，来见我。</p>
+  </div>
+
+  <div class="meeting-gallery">
+    <h3 class="chapter-subtitle" data-reveal>那 29 个小时，我按了很多次快门</h3>
+    <div class="meeting-grid">
+      <div class="media-slot photo" data-slot="m1" data-ratio="4:3" data-reveal data-delay="1"><span class="slot-label">①</span></div>
+      <div class="media-slot photo" data-slot="m2" data-ratio="4:3" data-reveal data-delay="2"><span class="slot-label">②</span></div>
+      <div class="media-slot photo" data-slot="m3" data-ratio="4:3" data-reveal data-delay="3"><span class="slot-label">③</span></div>
+      <div class="media-slot photo" data-slot="m4" data-ratio="4:3" data-reveal data-delay="4"><span class="slot-label">④</span></div>
+      <div class="media-slot photo" data-slot="m5" data-ratio="4:3" data-reveal data-delay="5"><span class="slot-label">⑤</span></div>
+      <div class="media-slot photo" data-slot="m6" data-ratio="4:3" data-reveal data-delay="6"><span class="slot-label">⑥</span></div>
+      <div class="media-slot photo" data-slot="m7" data-ratio="4:3" data-reveal data-delay="7"><span class="slot-label">⑦</span></div>
+      <div class="media-slot photo" data-slot="m8" data-ratio="4:3" data-reveal data-delay="8"><span class="slot-label">⑧</span></div>
+      <div class="media-slot photo" data-slot="m9" data-ratio="4:3" data-reveal data-delay="9"><span class="slot-label">⑨</span></div>
+      <div class="media-slot photo" data-slot="m10" data-ratio="4:3" data-reveal data-delay="10"><span class="slot-label">⑩</span></div>
+      <div class="media-slot photo" data-slot="m11" data-ratio="4:3" data-reveal data-delay="11"><span class="slot-label">⑪</span></div>
+      <div class="media-slot photo" data-slot="m12" data-ratio="4:3" data-reveal data-delay="12"><span class="slot-label">⑫</span></div>
+      <div class="media-slot photo" data-slot="m13" data-ratio="4:3" data-reveal data-delay="13"><span class="slot-label">⑬</span></div>
+      <div class="media-slot photo" data-slot="m14" data-ratio="4:3" data-reveal data-delay="14"><span class="slot-label">⑭</span></div>
+      <div class="media-slot photo" data-slot="m15" data-ratio="4:3" data-reveal data-delay="15"><span class="slot-label">⑮</span></div>
+    </div>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="game" data-magnetic>第四章 · 我们的峡谷 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 肆 · 我们的峡谷（霓虹电竞） ============ -->
+<section class="screen screen-hall screen-game" id="screen-game" data-name="game">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER IV · 我们的峡谷</p>
+    <h2 class="hall-title">我们的峡谷</h2>
+    <p class="hall-sub">故事的起点，是一局游戏</p>
+  </div>
+
+  <div class="game-story" data-reveal>
+    <p>2025.08.10，一局平平无奇的匹配。你在局内一直互动，我主动加了好友。</p>
+    <p>后来你说：「我特别喜欢听你说话，我会很期待你接下来会说些什么。」</p>
+    <p>再后来，我改名叫「鬼火上的黄毛」，你一直喊我摩托；你说你玩得不好，我说——</p>
+    <p class="em-gold">「你被授予了永远可以在我这里玩得菜的特权。」</p>
+  </div>
+
+  <div class="game-cards">
+    <div class="game-card" data-tilt data-reveal data-delay="1">
+      <div class="media-slot photo" data-slot="gname" data-ratio="16:9"><span class="slot-label">鬼火上的黄毛</span></div>
+      <p class="game-cap">鬼火上的黄毛 · 我的峡谷 ID</p>
+    </div>
+    <div class="game-card" data-tilt data-reveal data-delay="2">
+      <div class="media-slot photo" data-slot="gwin" data-ratio="16:9"><span class="slot-label">胜利</span></div>
+      <p class="game-cap">43 : 17 · 「评分如此高，太顶了！」</p>
+    </div>
+    <div class="game-card" data-tilt data-reveal data-delay="3">
+      <div class="media-slot photo" data-slot="gmvp" data-ratio="16:9"><span class="slot-label">MVP</span></div>
+      <p class="game-cap">金牌中路 · 你打的</p>
+    </div>
+    <div class="game-card" data-tilt data-reveal data-delay="4">
+      <div class="media-slot photo" data-slot="gduel" data-ratio="16:9"><span class="slot-label">并肩作战</span></div>
+      <p class="game-cap">心有灵犀 100% · 并肩作战</p>
+    </div>
+  </div>
+
+  <div class="game-levels">
+    <h3 class="chapter-subtitle" data-reveal>从恋人 Lv7 到 Lv19 · 我们在峡谷里慢慢升级</h3>
+    <div class="levels-track" data-reveal>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv7" data-ratio="4:3"><span class="slot-label">Lv7</span></div><span class="level-cap">守护着天空，大海，和你</span></div>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv9" data-ratio="4:3"><span class="slot-label">Lv9</span></div><span class="level-cap">守护着天空，大海，和你</span></div>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv12" data-ratio="4:3"><span class="slot-label">Lv12</span></div><span class="level-cap">皑如山上雪，皎若云间月</span></div>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv13" data-ratio="4:3"><span class="slot-label">Lv13</span></div><span class="level-cap">皑如山上雪，皎若云间月</span></div>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv17" data-ratio="4:3"><span class="slot-label">Lv17</span></div><span class="level-cap">即使天无雨，我亦留此地</span></div>
+      <div class="level" data-tilt><div class="media-slot photo" data-slot="glv19" data-ratio="4:3"><span class="slot-label">Lv19</span></div><span class="level-cap">即使天无雨，我亦留此地</span></div>
+    </div>
+    <p class="game-level-note" data-reveal>「皑如山上雪，皎若云间月」—— 系统给的文案，都懂我们。</p>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="quotes" data-magnetic>第五章 · 她说过的那些话 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 伍 · 她说过的那些话（手写便签） ============ -->
+<section class="screen screen-hall screen-quotes" id="screen-quotes" data-name="quotes">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER V · 她说过的那些话</p>
+    <h2 class="hall-title">她说过的那些话</h2>
+    <p class="hall-sub">我把你的每一句，都收在纸上</p>
+  </div>
+
+  <div class="note-wall">
+    <div class="note" data-reveal data-delay="1"><p>「我永远都愿意。」</p><span>2025.10.05 · 在一起那天</span></div>
+    <div class="note" data-reveal data-delay="2"><p>「你出现过，我感受过，从此一生都算我月圆。」</p><span>关于《明明就》</span></div>
+    <div class="note" data-reveal data-delay="3"><p>「煊同志，希望你的身边永远有我。」</p><span>2025.10.05</span></div>
+    <div class="note" data-reveal data-delay="4"><p>「陪伴、理解，还有走下去的决心。」</p><span>你眼中，两个人在一起最重要的三件事</span></div>
+    <div class="note" data-reveal data-delay="5"><p>「我太想和你有以后了。」</p><span>2025.10.22 · 一些不重要的重要</span></div>
+    <div class="note" data-reveal data-delay="6"><p>「九点五十三了，哥哥。快回来了，对不对？我现在真的特别想你。」</p><span>2026.04.25 · 等我回家</span></div>
+    <div class="note" data-reveal data-delay="7"><p>「如果你觉得你一个人没办法做到，或者哪一天你想稍微表达一点了，哪怕是一两句话——<b>我都在，我一直都在。</b>」</p><span>你写给倔强的我</span></div>
+    <div class="note" data-reveal data-delay="8"><p>「你太可恶了，参与到我的生活，又要渗透进我的性格，连带着未来都要被改写了喂！」</p><span>2025.12 · 关于改变</span></div>
+    <div class="note" data-reveal data-delay="9"><p>「抱抱煊呀，见面之后，也记得随时向我索要。」</p><span>2026.01.25</span></div>
+    <div class="note" data-reveal data-delay="10"><p>「我做到了啊！功夫不负有心员工，成功不负有煊领导。」</p><span>2026 · 你成功上岸那天</span></div>
+    <div class="note" data-reveal data-delay="11"><p>「那是我努力过的痕迹。我很棒，很勇敢地去维护我想要的关系。」</p><span>2025.09.30 · 少女心事</span></div>
+    <div class="note" data-reveal data-delay="12"><p>「我只想和你在一起了。」</p><span>2025.12 · 那一封长信之后</span></div>
+  </div>
+
+  <div class="quotes-letter" data-reveal>
+    <p>这些话，是你一点一点，说给我听的。</p>
+    <p>我全都记得。将来，也要一直记得。</p>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="about" data-magnetic>第六章 · 关于你 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 陆 · 关于你（彩色收藏柜） ============ -->
+<section class="screen screen-hall screen-about" id="screen-about" data-name="about">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER VI · 关于你</p>
+    <h2 class="hall-title">关于你</h2>
+    <p class="hall-sub">你喜欢的，我都悄悄记下了</p>
+  </div>
+
+  <div class="about-grid">
+    <article class="about-card c-xue" data-tilt data-reveal data-delay="1">
+      <div class="about-icon">♪</div>
+      <h3>薛之谦</h3>
+      <p>「在你第一次告诉我你写了薛之谦《苏黎世的从前》的时候，我脑子里只剩下浪漫两个字。」</p>
+      <p class="about-note">后来，我们把很多说不出口的话，都藏进歌里。</p>
+    </article>
+    <article class="about-card c-gintama" data-tilt data-reveal data-delay="2">
+      <div class="about-icon">☀</div>
+      <h3>银魂</h3>
+      <p>像万事屋一样——吵吵闹闹，却谁也离不开谁。有些羁绊，越乱越深，越深越亮。</p>
+      <p class="about-note">你说过，你最喜欢里面那种「不正经的认真」。</p>
+    </article>
+    <article class="about-card c-zhuzhu" data-tilt data-reveal data-delay="3">
+      <div class="about-icon">ฅ</div>
+      <h3>助助</h3>
+      <p>还有一只叫「助助」的小猫。它生病那晚，你哭得停不下来。我想隔着电话，给你撑一把伞。</p>
+      <div class="media-slot photo" data-slot="zhuzhu" data-ratio="4:3"><span class="slot-label">助助</span></div>
+    </article>
+    <article class="about-card c-dance" data-tilt data-reveal data-delay="4">
+      <div class="about-icon">◌</div>
+      <h3>舞蹈</h3>
+      <p>你学过五年拉丁舞，差一点就去了上海舞蹈学院。你总说自己「半途而废」，可我知道——那是一个女孩，在拼命守护她在乎的人。</p>
+    </article>
+    <article class="about-card c-sky" data-tilt data-reveal data-delay="5">
+      <div class="about-icon">✧</div>
+      <h3>天空与歌</h3>
+      <p>你爱拍天空，爱分享歌。你说，没有人会点开你分享的歌。可我会。你分享的每一首，我都在听。</p>
+    </article>
+    <article class="about-card c-21" data-tilt data-reveal data-delay="6">
+      <div class="about-icon">✎</div>
+      <h3>二十一问</h3>
+      <p>那晚你问我：「两个人在一起什么最重要？」你说：「陪伴、理解，还有走下去的决心。」</p>
+    </article>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="food" data-magnetic>第七章 · 好好吃饭 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 柒 · 好好吃饭（暖厨房） ============ -->
+<section class="screen screen-hall screen-food" id="screen-food" data-name="food">
+  <div class="hall-head" data-reveal>
+    <p class="hall-eyebrow">CHAPTER VII · 好好吃饭</p>
+    <h2 class="hall-title">好好吃饭</h2>
+    <p class="hall-sub">曾经，有一个小女孩</p>
+  </div>
+
+  <div class="food-story" data-reveal>
+    <p>曾经有一个小女孩，她的胃不太好，常常没有胃口，也不太愿意吃饭。</p>
+    <p>但她每次吃一点点东西，都会拍下来，发给一个很远很远的男孩，等他说「真棒」。</p>
+    <p>男孩总是不厌其烦地夸她——因为每一次夸奖，都是在替未来的他们，攒一点力气。</p>
+  </div>
+
+  <div class="polaroids">
+    <div class="polaroid" data-reveal data-delay="1"><div class="media-slot photo" data-slot="food1" data-ratio="1:1"><span class="slot-label">今日份 ①</span></div><div class="polaroid-stamp">今日份夸奖 ✔</div></div>
+    <div class="polaroid" data-reveal data-delay="2"><div class="media-slot photo" data-slot="food2" data-ratio="1:1"><span class="slot-label">今日份 ②</span></div><div class="polaroid-stamp">有好好吃饭 ✔</div></div>
+    <div class="polaroid" data-reveal data-delay="3"><div class="media-slot photo" data-slot="food3" data-ratio="1:1"><span class="slot-label">今日份 ③</span></div><div class="polaroid-stamp">真棒 ✔</div></div>
+    <div class="polaroid" data-reveal data-delay="4"><div class="media-slot photo" data-slot="food4" data-ratio="1:1"><span class="slot-label">她的美食照片 · 等你补充 ④</span></div><div class="polaroid-stamp">奖励一朵小花 ✔</div></div>
+    <div class="polaroid" data-reveal data-delay="5"><div class="media-slot photo" data-slot="food5" data-ratio="1:1"><span class="slot-label">她的美食照片 · 等你补充 ⑤</span></div><div class="polaroid-stamp">给你点赞 ✔</div></div>
+    <div class="polaroid" data-reveal data-delay="6"><div class="media-slot photo" data-slot="food6" data-ratio="1:1"><span class="slot-label">她的美食照片 · 等你补充 ⑥</span></div><div class="polaroid-stamp">继续保持 ✔</div></div>
+  </div>
+
+  <div class="food-letter" data-reveal>
+    <p>芯，我知道你常常没有胃口，也知道胃疼起来的时候很难受。</p>
+    <p>但每一顿饭，都是在替未来的我们攒力气。</p>
+    <p class="em-gold">答应我，你会好好吃饭，好好长大。</p>
+    <p>把胃养好——我们还要一起吃很多很多顿饭。</p>
+    <p>从贵州到江苏，从这一顿，到一辈子。</p>
+  </div>
+
+  <div class="hall-foot">
+    <button class="btn-luxe" data-next="cinema" data-magnetic>第八章 · 流动的影像 <span class="btn-arr">→</span></button>
+  </div>
+</section>
+
+<!-- ============ 捌 · 流动的影像（浪漫放映厅） ============ -->
+<section class="screen screen-hall screen-cinema" id="screen-cinema" data-name="cinema">
+  <div class="cinema-bg" aria-hidden="true">
+    <div class="cinema-bokeh b1"></div><div class="cinema-bokeh b2"></div><div class="cinema-bokeh b3"></div>
+    <div class="cinema-bokeh b4"></div><div class="cinema-bokeh b5"></div><div class="cinema-bokeh b6"></div>
+    <div class="cinema-glow"></div>
+  </div>
+  <div class="cinema-stage">
+    <div class="cinema-frame">
+      <span class="frame-orn orn-tl" aria-hidden="true"></span>
+      <span class="frame-orn orn-tr" aria-hidden="true"></span>
+      <span class="frame-orn orn-bl" aria-hidden="true"></span>
+      <span class="frame-orn orn-br" aria-hidden="true"></span>
+      <span class="frame-petal p1" aria-hidden="true">❀</span>
+      <span class="frame-petal p2" aria-hidden="true">❀</span>
+      <span class="frame-petal p3" aria-hidden="true">✿</span>
+      <span class="frame-petal p4" aria-hidden="true">❀</span>
+      <div id="cinemaSlides" class="cinema-slides" role="img" aria-label="我们的影像"></div>
+      <div class="cinema-frame-ring" aria-hidden="true"></div>
+      <div class="cinema-light" aria-hidden="true"></div>
+      <div class="cinema-scan" aria-hidden="true"></div>
+      <div class="cinema-vignette" aria-hidden="true"></div>
+    </div>
+    <div class="cinema-caption" id="cinemaCaption"></div>
+    <div class="cinema-hud">
+      <div class="cinema-progress" id="cinemaProgress"><span id="cinemaBar"></span></div>
+      <div class="cinema-controls">
+        <button id="cinemaPrev" class="cinema-btn" aria-label="上一帧">‹</button>
+        <span class="cinema-meta"><span id="cinemaIndex">01</span><span class="cinema-div">/</span><span id="cinemaTotal">12</span></span>
+        <button id="cinemaNext" class="cinema-btn" aria-label="下一帧">›</button>
+        <button id="cinemaToggle" class="cinema-btn cinema-toggle" aria-label="播放/暂停">❚❚</button>
+      </div>
+    </div>
+    <p class="cinema-tip">自动放映中 · 轻触画面可暂停 / 继续 · 也可以自己挑选 ← →</p>
+    <a href="#/finale" data-nav="finale" class="cinema-next">下一站 · 终章 <span>→</span></a>
+  </div>
+</section>
+
+<!-- ============ 终 · 未完待续（星空） ============ -->
+<section class="screen screen-hall screen-finale" id="screen-finale" data-name="finale">
+  <div class="finale-inner">
+    <p class="hall-eyebrow" data-reveal>EPILOGUE · 未完待续</p>
+    <h2 class="finale-title gold-text" data-reveal data-delay="1">未完待续</h2>
+    <div class="finale-days" data-reveal data-delay="2">第 <b id="dayCountFinal">311</b> 天</div>
+    <div class="finale-pact" data-reveal data-delay="3"><span>陪伴</span><i>·</i><span>理解</span><i>·</i><span>决心</span></div>
+
+    <div class="constellation" id="constellation" data-reveal data-delay="4" aria-label="星空拼出我们的名字">
+      <canvas id="constCanvas" width="760" height="300"></canvas>
+      <p class="const-hint">轻触星空 · 点亮我们的名字</p>
+    </div>
+
+    <div class="finale-poem" data-reveal>
+      <p>「我不是在寻找『永远』的保证。</p>
+      <p>我是在学习，如何把每一天，都过成</p>
+      <p>即使有一天要说再见，也不会后悔当初与你相识的样子。」</p>
+    </div>
+    <div class="finale-words" data-reveal>
+      <p>「煊同志，希望你的身边永远有我。」—— 你说</p>
+      <p>「小芯同学，希望我们能在每个深秋细水长流。」—— 我说</p>
+    </div>
+    <div class="finale-memory" data-reveal>
+      <div class="finale-thanks">
+        <p class="thanks-big">谢谢你来见证我们</p>
+        <p class="thanks-sub">还有一些更私密的故事，只属于我们俩。</p>
+      </div>
+    </div>
+    <div class="finale-sig" data-reveal>
+      <p>永远爱你的</p>
+      <p class="sig-name gold-text">煊</p>
+    </div>
+    <div class="finale-date" data-reveal>2025.10.05 — ∞</div>
+    <div class="seal seal-small" data-reveal aria-hidden="true"><span>煊 · 芯</span></div>
+    <button id="btnRestart" class="btn-luxe" data-reveal>回到片头</button>
+  </div>
+</section>
+
+<!-- 聊天记录光箱 -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-scrim" id="lightboxScrim"></div>
+  <div class="lightbox-body">
+    <img id="lightboxImg" alt="那晚的聊天记录">
+    <button id="lightboxX" class="lightbox-x" aria-label="关闭">✕</button>
+    <p class="lightbox-cap">2025.10.05 → 10.06 · 我们在一起的那一晚</p>
+  </div>
+</div>
+
+<div id="progress" class="progress" aria-hidden="true"></div>
+
+<script src="js/config.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
